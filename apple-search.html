@@ -2,7 +2,6 @@
 <html>
 <head>
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-  <!-- <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet"> -->
   <link href="http://code.ionicframework.com/ionicons/1.5.2/css/ionicons.min.css" rel="stylesheet">
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
   <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
@@ -20,6 +19,7 @@
     body {
       padding: 0;
       margin: 0;
+      font-family: 'Lucida Grande';
     }
 
     .global-header {
@@ -28,7 +28,6 @@
     }
 
     .global-header-content {
-      min-width: 1010px;
       position: relative;
       height: 46px;
       margin-right: 10%;
@@ -37,7 +36,7 @@
 
     .collapsable-search {
       position: absolute;
-      right: 0px;
+      right: 5%;
       top: 5px;
     }
 
@@ -47,7 +46,7 @@
 
     .open-search-button {
       position: absolute;
-      top: 5px;
+      top: 4px;
     }
 
     .open-search-button i {
@@ -58,7 +57,7 @@
     .search-input-wrapper .search-icon {
       color: #ccc;
       position: absolute;
-      top: 4px;
+      top: 3px;
       left: 6px;
     }
 
@@ -108,30 +107,25 @@
       var $collapsableSearch = $('.collapsable-search'),
           $openSearchButton = $('.open-search-button'),
           $searchArea = $('.search-input-wrapper'),
-          $globalHeader = $('.global-header'),
-          boxTween = new TimelineMax(),
-          buttonTween = new TimelineMax();
+          collapsableSearchTween = new TimelineMax();
 
-      buttonTween.to($openSearchButton, 0.2, {opacity: 0, paused: true});
-      boxTween.stop(0)
+      collapsableSearchTween.
+        from($searchArea, 0.2, {opacity: 0, onStart: function() { $searchArea.show(); $searchArea.focus() }}).
+        from($searchArea, 0.5, {width: '15px', ease: 'easeIn', onReverseComplete: function() { $searchArea.hide(); }}, 0).
+        to($openSearchButton, 0.2, {opacity: 0, paused: true}, 0);
 
-      boxTween.from($searchArea, 0.3, {opacity: 0, onStart: function() { $searchArea.show() }}).
-               from($searchArea, 0.5, {width: '15px', ease: 'easeIn', onReverseComplete: function() { $searchArea.hide(); }}, 0);
-      boxTween.stop(0)
+      collapsableSearchTween.stop(0);
 
       $openSearchButton.click(function(e) {
-        boxTween.timeScale(1.0)
-        boxTween.play()
-        buttonTween.play()
+        collapsableSearchTween.timeScale(1.0);
+        collapsableSearchTween.play();
       });
 
-      $globalHeader.click(function(e) {
-        if (boxTween.progress() == 0) {
-          return
+      $(document).click(function(e) {
+        if (collapsableSearchTween.progress() > 0 && $(e.target).parents('.collapsable-search').length == 0) {
+          collapsableSearchTween.timeScale(2.0);
+          collapsableSearchTween.reverse();
         }
-        boxTween.timeScale(2.0);
-        boxTween.reverse();
-        buttonTween.reverse();
       })
     });
   </script>
