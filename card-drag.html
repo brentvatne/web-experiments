@@ -1,0 +1,55 @@
+<!doctype html>
+
+<html>
+<head>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="libs/ionic.bundle.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.14.1/utils/Draggable.min.js"></script>
+
+  <style>
+    html {
+      box-sizing: border-box;
+    }
+
+    *, *:before, *:after {
+      box-sizing: inherit;
+    }
+
+    body {
+      padding: 0;
+      margin: 0;
+      font-family: 'Lucida Grande';
+    }
+
+    .cards {
+      position: relative;
+      margin: 0 auto;
+      width: 350px;
+      margin-top: 30px;
+    }
+
+    .cards .card:not(:first-child) {
+      margin-top: -100px;
+    }
+
+    .card {
+      width: 350px;
+      padding: 15px;
+      background: #fff;
+      min-height: 200px;
+      border: 1px solid #ccc;
+      box-shadow: -1px 3px 25px 0px rgba(41,41,41,0.5);
+    }
+
+  </style>
+</head>
+<body ng-app='demo' no-scroll>
+  <div class="cards">
+    <card></card>
+    <card></card>
+  </div>
+
+  <script src="card-drag.js"></script>
+</body>
+</html>
