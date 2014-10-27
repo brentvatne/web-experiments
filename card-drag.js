@@ -4,7 +4,6 @@ app.directive('noScroll', function($document) {
   return {
     restrict: 'A',
     link: function($scope, $element, $attr) {
-
       $document.on('touchmove', function(e) {
         e.preventDefault();
       });
@@ -15,8 +14,8 @@ app.directive('noScroll', function($document) {
 var CardView = ionic.views.View.inherit({
   initialize: function(opts) {
     // Store the card element
-
     this.el = opts.el;
+    this.$el = $(this.el);
     this.startX = this.startY = this.x = this.y = 0;
     this.bindEvents();
   },
@@ -27,6 +26,7 @@ var CardView = ionic.views.View.inherit({
     ionic.onGesture('dragstart', function(e) {
       // Process start of drag
       console.log(e);
+      self._doDragStart(e);
     }, this.el);
 
     ionic.onGesture('drag', function(e) {
@@ -41,7 +41,20 @@ var CardView = ionic.views.View.inherit({
     }, this.el);
   },
 
+  _doDragStart: function(e) {
+    this.windowHeight = $(window).height();
+    console.log(this.windowHeight);
+    this.tween = new TimelineMax();
+    this.tween.to(
+      $(this.el), 1, {
+        css:{transform:"translateY(" + this.windowHeight + "px)", opacity: 0}
+    });
+    this.tween.stop();
+  },
+
   _doDrag: function(e) {
+    this.tween.play()
+    return
     // Calculate how far we've dragged, with a slow-down effect
     var o = e.gesture.deltaY / 3;
 
