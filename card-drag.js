@@ -35,16 +35,18 @@ var CardView = ionic.views.View.inherit({
   _doDrag: function(e) {
     this.y = this.startY + e.gesture.deltaY;
     this.opacity = 1 - (this.y / (this.windowHeight - this.offsetY - 200));
-    TweenMax.to($(this.el), 0, {css: { y: this.y, opacity: this.opacity }})
+
+    // Could just change this tween to be on a bezier curve
+    TweenMax.to($(this.el), 0.2, {css: {y: this.y, opacity: this.opacity}})
   },
 
   _doDragStop: function(e) {
-    if (this.y >= 150) {
+    if (this.y >= 350) {
       // Animate it off screen
-      TweenMax.to($(this.el), 0.5, {css: { y: this.windowHeight + 100, opacity: 0 }})
+      TweenMax.to($(this.el), 1, {css: {y: this.windowHeight + 100, opacity: 0, ease: 'easeOut'}})
     } else {
       // Animate it back to the original position
-      TweenMax.to($(this.el), 0.2, { css: { y: 0, opacity: 1 }})
+      TweenMax.to($(this.el), 0.5, {css: {y: 0, opacity: 1}, ease: 'Back.easeOut'})
       // Reset the y value of the view
       this.y = 0;
     }

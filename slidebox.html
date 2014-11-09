@@ -1,0 +1,117 @@
+<!doctype html>
+
+<html>
+<head>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="libs/ionic.bundle.js"></script>
+  <link href="http://code.ionicframework.com/1.0.0-beta.13/css/ionic.css" rel="stylesheet">
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.14.1/utils/Draggable.min.js"></script>
+
+  <style>
+    html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, i, u, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, fieldset, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+      margin: 0;
+      padding: 0;
+      border: 0;
+      vertical-align: baseline;
+      font-size: 100%;
+    }
+
+    html {
+      box-sizing: border-box;
+      height: 100%;
+    }
+
+    *, *:before, *:after {
+      box-sizing: inherit;
+    }
+
+    body {
+      height: 100%;
+    }
+
+    .slider {
+      height: 100%;
+      width: 100%;
+      position: relative;
+      visibility: hidden;
+      overflow: hidden;
+    }
+
+    .slider-slides {
+      height: 100%:
+    }
+
+    .slider-slide {
+      height: 100%;
+      padding-top: 80px;
+      color: #000;
+      background-color: #fff;
+      text-align: center;
+
+      font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+      font-weight: 300;
+    }
+
+    .slider-slide {
+      position: relative;
+      display: block;
+      float: left;
+      width: 100%;
+      height: 100%;
+      vertical-align: top;
+    }
+  </style>
+
+  <script>
+    angular.module('demo', ['ionic']).
+    controller('MyCtrl', MyCtrl)
+
+    function MyCtrl($scope, $ionicSlideBoxDelegate) {
+      $scope.prevSlide = function() {
+        $ionicSlideBoxDelegate.previous();
+      }
+      $scope.nextSlide = function() {
+        $ionicSlideBoxDelegate.next();
+      }
+    }
+  </script>
+</head>
+
+<body ng-app='demo' ng-controller="MyCtrl">
+  <div class="bar bar-header bar-energized">
+    <button class="button" ng-click="prevSlide()">Previous</button>
+    <h1 class="title">Header!</h1>
+    <button class="button" ng-click="nextSlide()">Next</button>
+  </div>
+   <ion-slide-box show-pager='false'>
+      <ion-slide>
+        <ion-content class="has-header">
+          <div class="list">
+            <a class="item item-thumbnail-left" href="#"> <img src="http://ionicframework.com/img/docs/blue-album.jpg"> <h2>Weezer</h2> <p>Blue Album</p> </a> 
+            <a class="item item-thumbnail-left" href="#"> <img src="http://ionicframework.com/img/docs/siamese-dream.jpg"> <h2>Smashing Pumpkins</h2> <p>Siamese Dream</p> </a>
+            <a class="item item-thumbnail-left" href="#"> <img src="http://ionicframework.com/img/docs/nevermind.jpg"> <h2>Nirvana</h2> <p>Nevermind</p> </a>
+            <a class="item item-thumbnail-left" href="#"> <img src="http://ionicframework.com/img/docs/license-to-ill.jpg"> <h2>Beastie Boys</h2> <p>License To Ill</p> </a>
+            <a class="item item-thumbnail-left" href="#"> <img src="http://ionicframework.com/img/docs/dookie.jpg"> <h2>Green Day</h2> <p>Dookie</p> </a>
+            <a class="item item-thumbnail-left" href="#"> <img src="http://ionicframework.com/img/docs/blue-album.jpg"> <h2>Weezer</h2> <p>Blue Album</p> </a> 
+            <a class="item item-thumbnail-left" href="#"> <img src="http://ionicframework.com/img/docs/blue-album.jpg"> <h2>Weezer</h2> <p>Blue Album</p> </a> 
+            <a class="item item-thumbnail-left" href="#"> <img src="http://ionicframework.com/img/docs/siamese-dream.jpg"> <h2>Smashing Pumpkins</h2> <p>Siamese Dream</p> </a>
+            <a class="item item-thumbnail-left" href="#"> <img src="http://ionicframework.com/img/docs/nevermind.jpg"> <h2>Nirvana</h2> <p>Nevermind</p> </a>
+            <a class="item item-thumbnail-left" href="#"> <img src="http://ionicframework.com/img/docs/license-to-ill.jpg"> <h2>Beastie Boys</h2> <p>License To Ill</p> </a>
+            <a class="item item-thumbnail-left" href="#"> <img src="http://ionicframework.com/img/docs/dookie.jpg"> <h2>Green Day</h2> <p>Dookie</p> </a>
+            <a class="item item-thumbnail-left" href="#"> <img src="http://ionicframework.com/img/docs/siamese-dream.jpg"> <h2>Smashing Pumpkins</h2> <p>Siamese Dream</p> </a>
+            <a class="item item-thumbnail-left" href="#"> <img src="http://ionicframework.com/img/docs/nevermind.jpg"> <h2>Nirvana</h2> <p>Nevermind</p> </a>
+            <a class="item item-thumbnail-left" href="#"> <img src="http://ionicframework.com/img/docs/license-to-ill.jpg"> <h2>Beastie Boys</h2> <p>License To Ill</p> </a>
+            <a class="item item-thumbnail-left" href="#"> <img src="http://ionicframework.com/img/docs/dookie.jpg"> <h2>Green Day</h2> <p>Dookie</p> </a>
+          </div>
+        </ion-content>
+      </ion-slide>
+      <ion-slide>
+        <div class="box red">
+          Slide 2!
+          <button ng-click="prevSlide()">Prev slide!</button>
+        </div>
+      </ion-slide>
+    </ion-slide-box>
+</body>
+</html>
